@@ -1,0 +1,11 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bod="http://localhost:8087/services/bodymassindex" xmlns:bmi="http://localhost:8087/services/bmi">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <bod:SetPersonalData>
+            <bmi:Name></bmi:Name>
+            <bmi:Surname></bmi:Surname>
+            <bmi:Height></bmi:Height>
+            <bmi:Weight></bmi:Weight>
+        </bod:SetPersonalData>
+    </soapenv:Body>
+</soapenv:Envelope>
