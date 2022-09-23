@@ -25,8 +25,8 @@ public class DataUtil {
         return personalData;
     }
 
-    @DataProvider(name = "negativeData")
-    public Object[] negativeData() throws Exception {
+    @DataProvider(name = "negativeTestOnNegativeWeightOrHeight")
+    public Object[] negativeTestOnNegativeWeightOrHeight() throws Exception {
         PersonalData personalData[] = new PersonalData[60];
         Stream nameStream = Files.lines(Paths.get("./src/test/resources/names.txt"));
         Stream surnameStream = Files.lines(Paths.get("./src/test/resources/surnames.txt"));
@@ -46,4 +46,20 @@ public class DataUtil {
         }
         return personalData;
     }
+
+    @DataProvider(name = "negativeTestOnNonExistentData")
+    public Object[] negativeTestOnNonExistentData() throws Exception {
+        PersonalData personalData[] = new PersonalData[60];
+        Stream nameStream = Files.lines(Paths.get("./src/test/resources/surnames.txt"));
+        Stream surnameStream = Files.lines(Paths.get("./src/test/resources/names.txt"));
+        Object[] names = nameStream.toArray();
+        Object[] surnames = surnameStream.toArray();
+        for (int i = 0; i < personalData.length; i++) {
+            String name = (String) names[RandomUtils.nextInt(names.length)];
+            String surname = (String) surnames[RandomUtils.nextInt(surnames.length)];
+            personalData[i] = new PersonalData(name, surname, 160 + RandomUtils.nextInt(40), 60 + RandomUtils.nextInt(60));
+        }
+        return personalData;
+    }
+
 }

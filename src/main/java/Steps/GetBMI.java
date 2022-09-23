@@ -34,7 +34,7 @@ public class GetBMI {
     }
 
     @Step("Attempt to get person BMI, {personalData}")
-    public static void getBMINegative(PersonalData personalData) throws Exception {
+    public static void getBMINegativeTestOnNegativeWeightOrHeight(PersonalData personalData) throws Exception {
         LOG.info("Personal Data in use:" + personalData.toString());
         RequestSpecification request = getInstance();
         request.body(createXmlToGetBMI(personalData));
@@ -45,4 +45,15 @@ public class GetBMI {
         Assert.assertEquals(result, "Height or weight is not a positive number");
     }
 
+    @Step("Attempt to get person BMI, {personalData}")
+    public static void getBMINegativeTestOnNonExistentData (PersonalData personalData) throws Exception {
+        LOG.info("Personal Data in use:" + personalData.toString());
+        RequestSpecification request = getInstance();
+        request.body(createXmlToGetBMI(personalData));
+        Response response = request.post(getUrl());
+        String result = getValueByNodeName(response.asString(), "BodyMassIndex");
+        LOG.info("Collected message:" + result);
+        Allure.attachment("Collected message", result);
+        Assert.assertEquals(result, "Failed to get data");
+    }
 }

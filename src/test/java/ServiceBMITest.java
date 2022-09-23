@@ -6,8 +6,7 @@ import utils.DataUtil;
 
 import java.sql.Connection;
 
-import static Steps.GetBMI.getBMINegative;
-import static Steps.GetBMI.getBMIPositive;
+import static Steps.GetBMI.*;
 import static Steps.SendData.sendPersonalData;
 import static utils.SQLUtil.getInstance;
 
@@ -20,11 +19,17 @@ public class ServiceBMITest {
         getBMIPositive(personalData);
     }
 
-    @Story("negativeTest")
-    @Test(dataProvider = "negativeData", dataProviderClass = DataUtil.class, description = "Negative test to get BMI")
-    public void negativeTest(PersonalData personalData) throws Exception {
+    @Story("negativeTestOnNegativeWeightOrHeight")
+    @Test(dataProvider = "negativeTestOnNegativeWeightOrHeight", dataProviderClass = DataUtil.class, description = "Negative test to get BMI")
+    public void negativeTestOnNegativeWeightOrHeight(PersonalData personalData) throws Exception {
         sendPersonalData(personalData);
-        getBMINegative(personalData);
+        getBMINegativeTestOnNegativeWeightOrHeight(personalData);
+    }
+
+    @Story("negativeTestOnNonExistentData")
+    @Test(dataProvider = "negativeTestOnNonExistentData", dataProviderClass = DataUtil.class, description = "Negative test to get BMI")
+    public void negativeTestOnNonExistentData(PersonalData personalData) throws Exception {
+        getBMINegativeTestOnNonExistentData(personalData);
     }
 
     @AfterMethod
