@@ -12,7 +12,7 @@ public class DataUtil {
 
     @DataProvider(name = "positiveData")
     public Object[] positiveData() throws Exception {
-        PersonalData personalData[] = new PersonalData[200];
+        PersonalData personalData[] = new PersonalData[20];
         Stream nameStream = Files.lines(Paths.get("./src/test/resources/names.txt"));
         Stream surnameStream = Files.lines(Paths.get("./src/test/resources/surnames.txt"));
         Object[] names = nameStream.toArray();
@@ -27,7 +27,7 @@ public class DataUtil {
 
     @DataProvider(name = "negativeTestOnNegativeWeightOrHeight")
     public Object[] negativeTestOnNegativeWeightOrHeight() throws Exception {
-        PersonalData personalData[] = new PersonalData[60];
+        PersonalData personalData[] = new PersonalData[6];
         Stream nameStream = Files.lines(Paths.get("./src/test/resources/names.txt"));
         Stream surnameStream = Files.lines(Paths.get("./src/test/resources/surnames.txt"));
         Object[] names = nameStream.toArray();
@@ -49,7 +49,7 @@ public class DataUtil {
 
     @DataProvider(name = "negativeTestOnNonExistentData")
     public Object[] negativeTestOnNonExistentData() throws Exception {
-        PersonalData personalData[] = new PersonalData[60];
+        PersonalData personalData[] = new PersonalData[6];
         Stream nameStream = Files.lines(Paths.get("./src/test/resources/surnames.txt"));
         Stream surnameStream = Files.lines(Paths.get("./src/test/resources/names.txt"));
         Object[] names = nameStream.toArray();
