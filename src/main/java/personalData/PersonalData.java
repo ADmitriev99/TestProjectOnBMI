@@ -1,5 +1,8 @@
 package personalData;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
+
 public class PersonalData {
 
     protected String name;
@@ -15,6 +18,13 @@ public class PersonalData {
         return weight;
     }
 
+    @Step("Changing name and surname")
+    public void exchange(){
+        String name = this.name;
+        this.name = this.surname;
+        this.surname = name;
+        Allure.attachment("New personal data", this.toString());
+    }
     @Override
     public String toString() {
         if (this == null) return "Personal Data is NULL";

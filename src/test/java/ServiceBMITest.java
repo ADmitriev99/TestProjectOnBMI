@@ -29,6 +29,8 @@ public class ServiceBMITest {
     @Story("negativeTestOnNonExistentData")
     @Test(dataProvider = "negativeTestOnNonExistentData", dataProviderClass = DataUtil.class, description = "Negative test to get BMI")
     public void negativeTestOnNonExistentData(PersonalData personalData) throws Exception {
+        sendPersonalData(personalData);
+        personalData.exchange();
         getBMINegativeTestOnNonExistentData(personalData);
     }
 
